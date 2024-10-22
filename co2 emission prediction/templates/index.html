@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2 Emission Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <h2>CO2 Emission Prediction</h2>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>CO2 Emission Prediction</h1>
+        <form action="/predict" method="post">
+            <div class="input-group">
+                <label for="car">Car & Model:</label>
+                <input type="text" id="car" name="car" required>
+            </div>
+
+            <div class="input-group">
+                <label for="volume">Engine Volume (cc):</label>
+                <input type="number" id="volume" name="volume" step="0.01" required>
+            </div>
+
+            <div class="input-group">
+                <label for="weight">Weight (kg):</label>
+                <input type="number" id="weight" name="weight" step="0.01" required>
+            </div>
+
+            <button type="submit">Predict CO2 Emission</button>
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">
+            <h2>{{ prediction_text }}</h2>
+            <h3>Suggestion:</h3>
+            <p>{{ suggestion_text }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
